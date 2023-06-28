@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  text-align: center;
+  margin: 50px 0;
+}
+.box {
+  height: 300px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  background-color: #eee;
+}
+/* ---------------------------- */
+/* ---- ハンバーガーアイコン ---- */
+/* ---------------------------- */
+#hm-icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10; /*ボックスの重なり順序を指定するプロパティ
+                positionプロパティにabsoluteやfixedなどが
+                指定された要素(=ポジショニングされた要素)
+                のみ有効*/
+                
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;  /*要素の表示形式を決める*/
+                           
+  transition: all .4s; /*transition: 変化の対象 変化の時間 変化の仕方を指定*/
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative; /*positionプロパティは要素の配置を指定する
+                       初期値はstaticで位置を指定できない
+                       relativeは要素の現在位置を基準に相対位置を指定*/
+  width: 50px;
+  height: 44px;
+}
+.menu-trigger span {
+  position: absolute; /*absoluteは要素の絶対位置を指定する*/
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px; /*要素の四隅の角を丸めるためのプロパティ
+                        ここでは半径4pxの正円の円弧をベースにした角丸*/
+}
+
+/*nth-childは疑似クラスの1つ
+　子要素の番号などを指定してスタイルを適用できる
+　親要素から見て複数の要素がある中で、1部の要素のみ背景色を変えたいを時などに使用
+　要素:nth-child(値){スタイルの内容}*/
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-child(3) {
+  bottom: 0;
+}
+.menu-trigger.active span:nth-child(1) {              /*activeプロパティ
+                                                        動作が動いているときのデザイン設定*/
+  -webkit-transform: translateY(20px) rotate(-45deg); /*-webkit-はベンダープレフィックス(接頭辞)の1つ
+                                                        cssなどにおける正式な・標準的な
+                                                        プロパティではなく、拡張機能などの非標準な機能を
+                                                        利用するときに付ける
+                                                        webkitはHTMLやcssを解釈して整形して画面に表示する
+                                                        HTMLレンダリングエンジンの１種
+                                                        transformプロパティは要素を変化させるプロパティ
+                                                        translateY()はy軸(縦軸)への移動を指定している
+                                                        rotateは回転させるという指定*/
+                                                        
+  transform: translateY(20px) rotate(-45deg);
+  background-color: #fff;
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-20px) rotate(45deg);
+  transform: translateY(-20px) rotate(45deg);
+  background-color: #fff;
+}
+/* ------------------------ */
+/* ------ spメニュー ------ */
+/* ------------------------ */
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+}
+#sp-menu li {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#sp-menu a {
+  color: #fff;
+  text-decoration: none; /*テキストの装飾を指定するプロパティ*/
+  font-weight: bold; /*フォントの太さを指定するプロパティ*/
+}
+
